@@ -37,7 +37,6 @@ loginButton.addEventListener('click',()=>{
         window.localStorage.setItem('tokenKey', userToken);
         window.localStorage.setItem('userData',userData);
         
-        console.log(data.user)
 
         if(data.user.role==='customer'){
           loginButton.style.display="none";

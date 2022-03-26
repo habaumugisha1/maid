@@ -38,8 +38,8 @@ updatePage = (upage) =>{
 
 const customerId = JSON.parse(userData)
 
-
-fetch(`https://interpreters-api.herokuapp.com/api/v1/users/interpreters/?page=${page}`,{
+// customers
+fetch(`https://interpreters-api.herokuapp.com/api/v1/users/customers/${customerId.id}`,{
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -48,31 +48,45 @@ fetch(`https://interpreters-api.herokuapp.com/api/v1/users/interpreters/?page=${
   })
   .then((response) => response.json())
   .then((data) => {
+      //   })
+      
+      // fetch(`https://interpreters-api.herokuapp.com/api/v1/users/interpreters/?page=${page}`,{
+          //     method: "GET",
+          //     headers: {
+              //       "Content-type": "application/json; charset=UTF-8",
+              //       Authorization: `Bearer ${tokenValue}`,
+              //     },
+              //   })
+              //   .then((response) => response.json())
+              //   .then((data) => {
+                  
+                  let pageNumber=Math.ceil(data.maid.length/10)   
+                  findPages(pageNumber)
+                  if (data.maid.length ===0){
+                    intrepreters.innerHTML= " <h4>No Maid Hired!</h4>"
+                  }
+                  data.maid.map(interpreter=>{
+                      const intrepret=`<div class="col-sm-4 col-xs-12 htlfndr-visitor-column">
+                      <div class=htlfndr-visitor-card>
+                      <div class=visitor-avatar-side>
+                      <div class="visitor-avatar image"> <img src="${interpreter.profile}" alt="user avatar" /> </div>
+                      </div>
+                      <div class=visitor-info-side>
+                      <h7 class=visitor-user-name ><a href="singleUser.html#/${interpreter.id}"><b>${interpreter.firstName} ${interpreter.lastName}</b></a></h7>
+                      <p class=visitor-user-firm>Tel: ${interpreter.phone_number}</p>
+                      <p class=visitor-user-firm> wage | salary: ${interpreter.cost}</p>
+                      <div class=btns>
+                      <button class="btn btn-primary btn-danger btn-sm" onclick="unBookUser(${interpreter.id})">Un Book</button>
     
-    let pageNumber=Math.ceil(data.interpreters.count/10)   
-    findPages(pageNumber)
-    data.interpreters.rows.map(interpreter=>{
-      const intrepret=`<div class="col-sm-4 col-xs-12 htlfndr-visitor-column">
-                        <div class=htlfndr-visitor-card>
-                           <div class=visitor-avatar-side>
-                            <div class="visitor-avatar image"> <img src="${interpreter.profile}" alt="user avatar" /> </div>
-                           </div>
-                           <div class=visitor-info-side>
-                           <h7 class=visitor-user-name ><a href="singleUser.html#/${interpreter.id}">${interpreter.firstName} ${interpreter.lastName}</a></h7>
-                              <p class=visitor-user-firm>Tel: ${interpreter.phone_number}</p>
-                              <p class=visitor-user-firm> Status: ${interpreter.status}</p>
-                              <div class=btns>
-                              <button class="btn btn-primary btn-danger btn-sm" onclick="rejectUser(${interpreter.id})">Reject</button>
-                              <button class="btn btn-primary btn-success btn-sm" onclick="approveUser(${interpreter.id})">Approve</button>
-                              </div>
-
-                           </div>
-                        </div>
-                     </div>
-                     `;
-    intrepreters.innerHTML+=intrepret 
-
-    })
+                      </div>
+                      
+                      </div>
+                      </div>
+                      </div>
+                      `;
+                      intrepreters.innerHTML+=intrepret 
+                      
+                    })
   });
 
 
@@ -112,10 +126,10 @@ fetch(`https://interpreters-api.herokuapp.com/api/v1/users/interpreters/?page=${
   }
 
   // reject user
-  const rejectUser = (id)=>{
+  const unBookUser = (id)=>{
 
-    fetch(`https://interpreters-api.herokuapp.com/api/v1/users/reject/interpreters/${id}`,{
-      method: "DELETE",
+    fetch(`https://interpreters-api.herokuapp.com/api/v1/users/unbooking/${id}`,{
+      method: "PATCH",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         Authorization: `Bearer ${tokenValue}`,

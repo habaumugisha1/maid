@@ -39,7 +39,7 @@ updatePage = (upage) =>{
 const customerId = JSON.parse(userData)
 
 
-fetch(`https://interpreters-api.herokuapp.com/api/v1/users/interpreters/?page=${page}`,{
+fetch("https://interpreters-api.herokuapp.com/api/v1/users/customers",{
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -48,23 +48,17 @@ fetch(`https://interpreters-api.herokuapp.com/api/v1/users/interpreters/?page=${
   })
   .then((response) => response.json())
   .then((data) => {
-    
+
     let pageNumber=Math.ceil(data.interpreters.count/10)   
     findPages(pageNumber)
     data.interpreters.rows.map(interpreter=>{
       const intrepret=`<div class="col-sm-4 col-xs-12 htlfndr-visitor-column">
                         <div class=htlfndr-visitor-card>
-                           <div class=visitor-avatar-side>
-                            <div class="visitor-avatar image"> <img src="${interpreter.profile}" alt="user avatar" /> </div>
-                           </div>
                            <div class=visitor-info-side>
                            <h7 class=visitor-user-name ><a href="singleUser.html#/${interpreter.id}">${interpreter.firstName} ${interpreter.lastName}</a></h7>
                               <p class=visitor-user-firm>Tel: ${interpreter.phone_number}</p>
-                              <p class=visitor-user-firm> Status: ${interpreter.status}</p>
-                              <div class=btns>
-                              <button class="btn btn-primary btn-danger btn-sm" onclick="rejectUser(${interpreter.id})">Reject</button>
-                              <button class="btn btn-primary btn-success btn-sm" onclick="approveUser(${interpreter.id})">Approve</button>
-                              </div>
+                              <p class=visitor-user-firm> Maid/s: ${interpreter.status}</p>
+                              
 
                            </div>
                         </div>

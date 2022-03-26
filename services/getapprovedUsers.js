@@ -1,15 +1,26 @@
 const tokenValue = localStorage.getItem("tokenKey");
 const userData = localStorage.getItem("userData");
 
+
+const userDataObject = JSON.parse(userData)
 const logoutClass= document.querySelector(".logoutClass ul li");
+const maidClass = document.querySelector(".maidClass ul li")
 const RegisterClass=document.querySelector(".RegisterClass ul li");
 const loginClass =document.querySelector(".loginclass");
+const myMaidLink = document.querySelector(".maidClass ul li a")
 
 if(userData){
   logoutClass.style.display="block";
+  maidClass.style.display="block"
   RegisterClass.style.display="none";
   loginClass.style.display="none";
 }
+
+maidClass.addEventListener('click', () => {
+
+  myMaidLink.setAttribute("href", `./mymaid.html?id=${userDataObject.id}`)
+  console.log("attribute")
+})
 logoutClass.addEventListener("click",()=>{
   localStorage.removeItem("userData")
   window.location="index.html"
