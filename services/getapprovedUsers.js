@@ -85,7 +85,7 @@ updatePage = (upage) =>{
                            <div class=visitor-info-side>
                               <h7 class=visitor-user-name ><a href="singleUser.html#/${interpreter.id}">${interpreter.firstName} ${interpreter.lastName}</a></h7>
                               <h6 class=visitor-user-firm>${interpreter.Languages}</h6>
-                              <h6 class=visitor-user-firm>${interpreter.cost}</h6>
+                              <h6 class=visitor-user-firm>${interpreter.age}</h6>
                            </div>
                         </div>
                      </div>

@@ -51,9 +51,6 @@ customerbtn.addEventListener("click", ()=>{
    password:password.value
  })
 
- console.log(datas)
- console.log(firstName.value)
-
 
  fetch("https://interpreters-api.herokuapp.com/api/v1/users/customer/signUp",{
   method: "POST",
