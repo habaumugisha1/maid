@@ -4,7 +4,6 @@ const errorlogin = document.querySelector(".loginerror");
 const successeslogin = document.querySelector(".success");
 const loginButton =document.querySelector('.login');
 
-console.log(loginButton);
 
 loginButton.addEventListener('click',()=>{
     const email=document.querySelector('.emaillogin');
