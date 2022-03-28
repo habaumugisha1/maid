@@ -61,7 +61,6 @@ updatePage = (upage) =>{
       let pageNumber=Math.ceil(data.interpreters.count/10)   
     findPages(pageNumber)
     
-    
     data.interpreters.rows.map(interpreter=>{
       const intrepret= userData? `<div class="col-sm-3 col-xs-12 htlfndr-visitor-column">
                         <div class=htlfndr-visitor-card inter-card>

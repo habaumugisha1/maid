@@ -13,21 +13,19 @@ const registerform=document.querySelector('.registervalue');
 const customerbtn =document.querySelector(".customerbtn");
 
 registerform.addEventListener('change',(event)=>{
+
   if(event.target.value==="1"){
-    console.log(event.target.value)
-    
-    console.log("intrepreter")
+  
     clientForm.style.display='none'  ;
     interpreterform.style.display='block';
   }
   if(event.target.value==="2"){
-    console.log("Client")
     interpreterform.style.display='none';
     clientForm.style.display='block';
   }
   if(event.target.value==="0"){
 
-    console.log("Nothing choosen")
+    console.log("Nothing choosen on register")
   
     interpreterform.style.display='none'
     clientForm.style.display='none'
